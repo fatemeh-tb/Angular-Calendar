@@ -1,0 +1,94 @@
+.date-picker {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    height: 60px;
+    background-color: #FFF;
+    margin: 100px auto;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.8);
+    user-select: none;
+}
+
+.date-picker:hover {
+    background-color: #f3f3f3ee;
+}
+
+.date-picker .selected-date {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #313131;
+    font-size: 28px;
+}
+
+.date-picker .dates {
+    background-color: #FFF;
+}
+
+.date-picker .dates .month {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #EEE;
+    border-top: 2px solid #EEE;
+}
+
+.date-picker .dates .month .arrows {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #b24926;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.date-picker .dates .calendar {
+    width: 290px;
+    margin-left: 15px;
+    padding-bottom: 15px;
+}
+
+.date-picker .dates .calendar .days {
+    padding: .7em .6em;
+    width: 40px;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.date-picker .dates .calendar .weekDayNames {
+    text-align: center;
+    font-weight: bold;
+    color: #000000;
+    cursor: default;
+}
+
+.date-picker .dates .calendar .daysNumber {
+    text-align: right;
+    color: #222222;
+    font-weight: 540;
+    /* border: 1px solid #e1e1e1; */
+    border-radius: 20px;
+    /* background-color: #f6f6f6; */
+}
+
+.date-picker .dates .calendar .daysNumber:hover {
+    background-color: #c8d3b9;
+}
+
+.todaysDate {
+    background-color: rgba(255, 60, 0, 0.541) !important;
+    font-weight: 580 !important;
+}
+
+.emptyDays {
+    visibility: hidden;
+}
+
+.selectedDay {
+    background-color: #c8d3b9c7;
+}
