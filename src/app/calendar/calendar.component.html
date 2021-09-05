@@ -1,6 +1,6 @@
 <div class="date-picker">
-    <div class="selected-date" (click)="showContainer=!showContainer"> {{currentDate | date: 'yyyy / MM / dd'}}</div>
-    <div class="dates" *ngIf="showContainer">
+    <div class="selected-date" (click)="showContent=!showContent"> {{currentDate | date: 'yyyy / MM / dd'}}</div>
+    <div class="dates" *ngIf="showContent">
         <div class="month">
             <button class="arrows" (click)="onPreviousMonth()"> &lt; </button>
             <span>{{ calendarCreator.getMonthName(monthNumber) }} {{year}}</span>
@@ -16,7 +16,9 @@
                 </td>
             </tr>
             <tr>
-                <td class="days daysNumber" *ngFor="let day of monthDays" [attr.data-dayNumber]="day.dayNumber" #event (click)="addClass(event, $event, 'selectedDay')" (click)="selectedDate(event)" [ngClass]="{'emptyDays' : day.dayNumber == 0,'todaysDate': day.dayNumber == today && selectedMonth == monthNumber && selectedYear == year}">
+                <td class="days daysNumber" *ngFor="let day of monthDays" [attr.data-dayNumber]="day.dayNumber" #event
+                    (click)="selectedDate(event)" (click)="addClass(event, $event, 'selectedDay')"
+                    [ngClass]="{'emptyDays' : day.dayNumber == 0,'todaysDate': day.dayNumber == today && selectedMonth == monthNumber && selectedYear == year}">
                     {{day.dayNumber}}
                 </td>
             </tr>

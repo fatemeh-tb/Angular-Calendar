@@ -9,13 +9,11 @@ import { Day } from '../model/day.model';
 })
 
 export class CalendarComponent implements OnInit {
-    @ViewChild('event', { static: false }) event: ElementRef;
-    showContainer: boolean = false;
+    showContent: boolean = false;
 
     public currentDate = new Date();
-
-    public monthDays: Day[];
     public weekDaysName = [];
+    public monthDays: Day[];
 
     public today: number = this.currentDate.getDate()
     public monthNumber: number = this.currentDate.getMonth();
@@ -24,8 +22,8 @@ export class CalendarComponent implements OnInit {
     public selectedDay = this.today;
     public selectedMonth = this.monthNumber;
     public selectedYear = this.year;
-
-    constructor(public calendarCreator: CalendarCreator, private renderer: Renderer2) { }
+    selectedItem: number;
+    constructor(public calendarCreator: CalendarCreator, private elRef: ElementRef, private renderer: Renderer2) { }
 
     ngOnInit(): void {
         this.setMonthDays(this.calendarCreator.getCurrentMonth());
@@ -59,20 +57,17 @@ export class CalendarComponent implements OnInit {
 
     selectedDate(e) {
         this.currentDate = new Date(this.year + '/' + (this.monthNumber + 1) + '/' + e.getAttribute('data-dayNumber'));
-        // console.log(e)
     }
 
-    addClass(ev) {
-        // console.log(this.event.nativeElement)
-        //event.srcElement.classList.add("selected")
-        const hasClass = ev.classList.contains('selectedDay')
-        console.log(hasClass)
-        this.renderer.removeClass(ev, 'selectedDay')
-        if (!hasClass) {
-            this.renderer.addClass(ev, 'selectedDay')
-        }
-    }
+    // addClass(ev) {
+    //     const hasClass = ev.classList.contains('selectedDay')
+    //     this.renderer.removeClass(ev, 'selectedDay')
+    //     if (!hasClass) {
+    //         this.renderer.addClass(ev, 'selectedDay')
+    //     }
+    // }
 
+    //Initialize array of month days
     private setMonthDays(days: Day[]): void {
         this.monthDays = days;
         this.monthNumber = this.monthDays[0].monthIndex;

@@ -10,17 +10,26 @@ export class CalendarCreator {
         this.currentMonthIndex = date.getMonth();
     }
 
-    public getCurrentMonth(): Day[] {
-        return this.getMonthDays(this.currentMonthIndex, this.currentyear);
+    // Initialize Day Model
+    createDay(dayNumber: number, monthIndex: number, year: number) {
+        let day = new Day();
+        day.dayNumber = dayNumber;
+
+        day.monthIndex = monthIndex;
+        day.month = this.getMonthName(monthIndex);
+
+        day.year = year;
+        day.dayOfWeek = new Date(year, monthIndex, dayNumber).getDay();
+
+        return day;
     }
 
     //Create Array Of Days
     public getMonthDays(monthIndex: number, year: number): Day[] {
         let days = [];
-
         let firstDay = this.createDay(1, monthIndex, year);
 
-        //  Create Empty Days Before First Daay Of Month
+        //  Create Empty Days Before First Day Of Month
         for (let i = 1; i < firstDay.dayOfWeek; i++) {
             days.push({
                 dayNumber: 0,
@@ -37,6 +46,10 @@ export class CalendarCreator {
             days.push(this.createDay(i, monthIndex, year));
         }
         return days;
+    }
+
+    public getCurrentMonth(): Day[] {
+        return this.getMonthDays(this.currentMonthIndex, this.currentyear);
     }
 
     public getMonthName(monthIndex: number): string {
@@ -66,20 +79,5 @@ export class CalendarCreator {
             case 11:
                 return "December";
         }
-    }
-
-    // Initialize Day Model
-    createDay(dayNumber: number, monthIndex: number, year: number) {
-        let day = new Day();
-
-        day.dayNumber = dayNumber;
-
-        day.monthIndex = monthIndex;
-        day.month = this.getMonthName(monthIndex);
-
-        day.year = year;
-        day.dayOfWeek = new Date(year, monthIndex, dayNumber).getDay();
-
-        return day;
     }
 }
